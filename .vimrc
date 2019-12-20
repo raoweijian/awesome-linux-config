@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Valloric/YouCompleteMe'
 Plug 'nvie/vim-flake8'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
@@ -109,9 +108,6 @@ let g:jedi#completions_command = "<C-N>"
 let g:jedi#auto_close_doc = 0
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#completions_enabled = 0
-"let g:jedi#popup_select_first = 0
-"set completeopt-=preview
-"set completeopt-=longest
 
 " 保存文件时自动检测 flake8
 autocmd BufWritePost *.py call Flake8()

@@ -101,14 +101,5 @@ alias wl='wc -l'
 alias grep='grep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv,node_modules}'
 alias dh='du -h --max-depth=1'
 alias wget='wget --no-check-certificate'
-alias rmd='docker rm $(docker ps -qf status=exited)'
-alias rmi='docker rmi $(docker images -f "dangling=true" -q)'
-
 
 export EDITOR=vim
-export PATH=$PATH:/usr/local/go/bin
-
-#export C_INCLUDE_PATH="/home/raoweijian/.local/include:$C_INCLUDE_PATH"
-#export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-#export LIBRARY_PATH="/home/raoweijian/.local/lib:/home/raoweijian/.local/lib64"
-#export LD_LIBRARY_PATH=$LIBRARY_PATH
