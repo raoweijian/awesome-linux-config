@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/raoweijian/.oh-my-zsh
+export ZSH=/Users/weijianrao/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -96,19 +96,29 @@ source $ZSH/oh-my-zsh.sh
 #
 alias m='ls -l -h'
 alias le='less -S -N'
-alias vi='vim'
 alias wl='wc -l'
 alias grep='grep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv,node_modules}'
-alias dh='du -h --max-depth=1'
+alias dh='du -h -d 1'
 alias wget='wget --no-check-certificate'
-alias rmd='docker rm $(docker ps -qf status=exited)'
-alias rmi='docker rmi $(docker images -f "dangling=true" -q)'
-
+alias db="~/code/flexport/script/devbox.rb"
+alias d='dict'
+alias sr='db exec shipper_exp sv restart shipper_exp_development'
+alias gs='git status'
+alias ga='git add'
+alias gc='git checkout'
+alias gd='git diff'
 
 export EDITOR=vim
-export PATH=$PATH:/usr/local/go/bin
+export GITHUB_USERNAME='Weijian Rao'
+export PATH="/usr/local/sbin:$PATH"
 
-#export C_INCLUDE_PATH="/home/raoweijian/.local/include:$C_INCLUDE_PATH"
-#export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
-#export LIBRARY_PATH="/home/raoweijian/.local/lib:/home/raoweijian/.local/lib64"
-#export LD_LIBRARY_PATH=$LIBRARY_PATH
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --no-ignore --ignore-file=/Users/weijianrao/.fdignore --type f '
