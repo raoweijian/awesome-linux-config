@@ -15,15 +15,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rails'
 Plug 'lifepillar/vim-solarized8'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'flowtype/vim-flow'
+Plug 'dense-analysis/ale'
+"Plug 'pangloss/vim-javascript'
+Plug 'chemzqm/vim-jsx-improve'
+"Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'mxw/vim-jsx'
+"Plug 'yuezk/vim-js'
 Plug 'vim-airline/vim-airline'
-Plug 'mileszs/ack.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'rking/ag.vim'
-"Plug 'artur-shaik/vim-javacomplete2'
 
 call plug#end()
 
@@ -82,6 +83,7 @@ match WhitespaceEOL /\s\+$/
 
 "NERDTREE配置
 nmap <Leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <Leader>f :NERDTreeFind<CR>
 let NERDTreeAutoCenter=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp', '__pycache__', 'node_modules', '\.git'] "不显示这些文件
 let NERDTreeWinSize=35 "设置宽度
@@ -98,8 +100,9 @@ nnoremap <F5> :TlistToggle<CR>
 " autocmd BufWritePost *.py call Flake8()
 
 " flow
-let g:flow#flowpath = '/Users/weijianrao/code/flexport/node_modules/flow-bin/flow-osx-v0.122.0/flow'
+let g:flow#flowpath = '/Users/weijianrao/code/flexport/node_modules/flow-bin/flow-osx-v0.126.0/flow'
 let g:flow#enable = 0
+let g:javascript_plugin_flow = 1
 
 " wrap word in quotation
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -107,3 +110,11 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+au BufNewFile,BufRead *.jsx setlocal shiftwidth=2 sts=2 et
+au BufNewFile,BufRead *.jsx nmap <buffer> <localleader>g :ALEGoToDefinition<CR>
+
+au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake setlocal shiftwidth=2 sts=2 et
+au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake nmap <buffer> <localleader>g <C-]>
+
+let g:ale_linters = {'javascriptreact': ['flow-language-server', 'eslint']}
