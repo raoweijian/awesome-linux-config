@@ -15,22 +15,22 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rails'
 Plug 'lifepillar/vim-solarized8'
-Plug 'dense-analysis/ale'
-"Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
-"Plug 'maxmellon/vim-jsx-pretty'
-"Plug 'mxw/vim-jsx'
-"Plug 'yuezk/vim-js'
+Plug 'flowtype/vim-flow'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'rking/ag.vim'
+Plug 'zivyangll/git-blame.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
 let maplocalleader=" "
 let mapleader=" "
-set updatetime=100
+set updatetime=300
 set clipboard=unnamed
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -90,31 +90,27 @@ let NERDTreeWinSize=35 "设置宽度
 "================================== end of NERDTREE配置 ==================================
 
 
-"taglist
-let Tlist_Use_Right_Window = 1
-let Tlist_Show_One_File = 1     "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1   "如果taglist窗口是最后一个窗口，则退出vim
-nnoremap <F5> :TlistToggle<CR>
-
 " 保存文件时自动检测 flake8
 " autocmd BufWritePost *.py call Flake8()
 
 " flow
 let g:flow#flowpath = '/Users/weijianrao/code/flexport/node_modules/flow-bin/flow-osx-v0.126.0/flow'
-let g:flow#enable = 0
-let g:javascript_plugin_flow = 1
+let g:flow#enable = 1
+let g:flow#showquickfix = 0
 
 " wrap word in quotation
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+nnoremap <silent> <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <silent> <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 au BufNewFile,BufRead *.jsx setlocal shiftwidth=2 sts=2 et
-au BufNewFile,BufRead *.jsx nmap <buffer> <localleader>g :ALEGoToDefinition<CR>
+au BufNewFile,BufRead *.jsx nmap <buffer> <leader>g :FlowJumpToDef<CR>
 
 au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake setlocal shiftwidth=2 sts=2 et
-au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake nmap <buffer> <localleader>g <C-]>
+au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake nmap <buffer> <leader>g <C-]>
 
-let g:ale_linters = {'javascriptreact': ['flow-language-server', 'eslint']}
+" let g:ale_linters = {'javascriptreact': ['flow-language-server', 'eslint']}
+
+nnoremap <localleader>s :<C-u>call gitblame#echo()<CR>
