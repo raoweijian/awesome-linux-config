@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH=/Users/weijianrao/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -58,9 +58,9 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+# plugins=(
+#   git
+# )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,12 +100,18 @@ alias wl='wc -l'
 alias grep='grep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv,node_modules}'
 alias dh='du -h -d 1'
 alias wget='wget --no-check-certificate'
+alias db="~/code/flexport/script/devbox.rb"
+alias devbox="~/code/flexport/script/devbox.rb"
+alias dbb='db byebug'
+alias dbc='db console'
+alias d='dict'
 alias gs='git status'
 alias ga='git add'
 alias gc='git checkout'
 alias gd='git diff'
 
 export EDITOR=vim
+export GITHUB_USERNAME='Weijian Rao'
 export PATH="/usr/local/sbin:$PATH"
 
 # nvm
@@ -113,9 +119,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # fzf
 export FZF_DEFAULT_COMMAND='fd --no-ignore --ignore-file=/Users/weijianrao/.fdignore --type f '
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

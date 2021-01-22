@@ -7,7 +7,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/taglist.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -15,16 +14,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rails'
 Plug 'lifepillar/vim-solarized8'
-Plug 'chemzqm/vim-jsx-improve'
-Plug 'flowtype/vim-flow'
+Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
-Plug 'rking/ag.vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'dense-analysis/ale'
+Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'eslint/eslint'
 
 call plug#end()
 
@@ -54,7 +53,7 @@ syntax enable
 set nobackup  " 不要自动生成 ~ 结尾的备份文件
 
 " ctrl p to fzf
-nnoremap <c-p> :FZF<cr>
+nnoremap <c-p> :FZF -i<cr>
 
 " table 键设定相关
 set expandtab
@@ -81,6 +80,10 @@ nnoremap <F4> :syntax on <CR>
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
+" 复制当前词
+nmap <Leader>c bvey
+nmap q :q<CR>
+
 "NERDTREE配置
 nmap <Leader>n <plug>NERDTreeTabsToggle<CR>
 nmap <Leader>f :NERDTreeFind<CR>
@@ -93,11 +96,6 @@ let NERDTreeWinSize=35 "设置宽度
 " 保存文件时自动检测 flake8
 " autocmd BufWritePost *.py call Flake8()
 
-" flow
-let g:flow#flowpath = '/Users/weijianrao/code/flexport/node_modules/flow-bin/flow-osx-v0.126.0/flow'
-let g:flow#enable = 1
-let g:flow#showquickfix = 0
-
 " wrap word in quotation
 nnoremap <silent> <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent> <leader>' viw<esc>a'<esc>hbi'<esc>lel
@@ -105,12 +103,44 @@ nnoremap <silent> <leader>' viw<esc>a'<esc>hbi'<esc>lel
 " reload vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-au BufNewFile,BufRead *.jsx setlocal shiftwidth=2 sts=2 et
-au BufNewFile,BufRead *.jsx nmap <buffer> <leader>g :FlowJumpToDef<CR>
-
+au BufNewFile,BufRead *.jsx,*.js setlocal shiftwidth=2 sts=2 et
 au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake setlocal shiftwidth=2 sts=2 et
-au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake nmap <buffer> <leader>g <C-]>
-
-" let g:ale_linters = {'javascriptreact': ['flow-language-server', 'eslint']}
 
 nnoremap <localleader>s :<C-u>call gitblame#echo()<CR>
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --ignore-dir sorbet --ignore-dir __generated__ --ignore RouteConstants.js --ignore routes.js'
+endif
+
+" don't auto jumt to the first result
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+" cp to copy current file name
+nmap cp :let @+ = expand("%")<CR>
+
+" =========================== coc
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <leader>rn <Plug>(coc-rename)
+" ========================== end of Coc
