@@ -9,21 +9,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
 Plug 'vim-scripts/taglist.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rails'
 Plug 'lifepillar/vim-solarized8'
 Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
-Plug 'zivyangll/git-blame.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'eslint/eslint'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -33,7 +32,9 @@ set updatetime=300
 set clipboard=unnamed
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-nnoremap <silent> <leader>m :History<CR>
+
+"gui settings
+set guifont=Menlo\ Regular:h14
 
 "set termguicolors
 set background=dark
@@ -43,7 +44,7 @@ colorscheme solarized8
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
 set mouse=n
-set so=7
+set so=0
 set number
 set ruler
 set nocompatible
@@ -54,6 +55,10 @@ set nobackup  " 不要自动生成 ~ 结尾的备份文件
 
 " ctrl p to fzf
 nnoremap <c-p> :FZF -i<cr>
+"nnoremap <c-p> :Clap files<cr>
+nnoremap <silent> <leader>m :Clap history<CR>
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_theme = 'material_design_dark'
 
 " table 键设定相关
 set expandtab
@@ -92,10 +97,6 @@ let NERDTreeIgnore=['\.pyc','\~$','\.swp', '__pycache__', 'node_modules', '\.git
 let NERDTreeWinSize=35 "设置宽度
 "================================== end of NERDTREE配置 ==================================
 
-
-" 保存文件时自动检测 flake8
-" autocmd BufWritePost *.py call Flake8()
-
 " wrap word in quotation
 nnoremap <silent> <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <silent> <leader>' viw<esc>a'<esc>hbi'<esc>lel
@@ -106,7 +107,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 au BufNewFile,BufRead *.jsx,*.js setlocal shiftwidth=2 sts=2 et
 au BufNewFile,BufRead *.rb,*.rbw,*.gemspec,*.rake setlocal shiftwidth=2 sts=2 et
 
-nnoremap <localleader>s :<C-u>call gitblame#echo()<CR>
+nnoremap <localleader>s :Git blame<CR>
+nnoremap vs :vsplit<CR>
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
