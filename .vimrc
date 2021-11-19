@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
-Plug 'vim-scripts/taglist.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rails'
 Plug 'lifepillar/vim-solarized8'
@@ -23,6 +23,7 @@ Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -30,11 +31,27 @@ let maplocalleader=" "
 let mapleader=" "
 set updatetime=300
 set clipboard=unnamed
+
+" airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 0
+let g:airline_section_b = ''
+let g:airline_section_y = ''
+let g:airline_section_z = ''
+
+" ctrl p to file search
+" nnoremap <c-p> :FZF -i<cr>
+nnoremap <silent> <leader>m :History<CR>
+" nnoremap <c-p> :Clap files<CR>
+" nnoremap <silent> <leader>m :Clap history<CR>
+" let g:clap_layout = { 'relative': 'editor' }
+" let g:clap_theme = 'material_design_dark'
+nnoremap <c-p> :Leaderf file<cr>
+" let g:Lf_CommandMap = {'<C-V>': ['<D-v>']}
 
 "gui settings
-set guifont=Menlo\ Regular:h14
+set guifont=DroidSansMono_Nerd_Font:h11
 
 "set termguicolors
 set background=dark
@@ -43,8 +60,9 @@ colorscheme solarized8
 " 常规设定
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set termencoding=utf-8
+set encoding=UTF-8
 set mouse=n
-set so=0
+"set so=0
 set number
 set ruler
 set nocompatible
@@ -52,13 +70,6 @@ syntax on
 filetype plugin indent on
 syntax enable
 set nobackup  " 不要自动生成 ~ 结尾的备份文件
-
-" ctrl p to fzf
-nnoremap <c-p> :FZF -i<cr>
-"nnoremap <c-p> :Clap files<cr>
-nnoremap <silent> <leader>m :Clap history<CR>
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_theme = 'material_design_dark'
 
 " table 键设定相关
 set expandtab
@@ -113,7 +124,7 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep --ignore-dir sorbet --ignore-dir __generated__ --ignore RouteConstants.js --ignore routes.js'
+  let g:ackprg = 'ag --hidden --vimgrep --ignore-dir .git --ignore-dir node_modules --ignore-dir sorbet --ignore-dir __generated__ --ignore RouteConstants.js --ignore routes.js'
 endif
 
 " don't auto jumt to the first result
