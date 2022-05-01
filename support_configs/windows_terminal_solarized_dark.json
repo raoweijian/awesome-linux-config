@@ -1,0 +1,23 @@
+{
+   "background": "#002B36",
+   "black": "#143F4A",
+   "blue": "#268BD2",
+   "brightBlack": "#004954",
+   "brightBlue": "#26A0D2",
+   "brightCyan": "#2AB5AC",
+   "brightGreen": "#77AE1B",
+   "brightPurple": "#7684D8",
+   "brightRed": "#E14B16",
+   "brightWhite": "#F8F2DF",
+   "brightYellow": "#C99D00",
+   "cursorColor": "#65DE8C",
+   "cyan": "#2AA198",
+   "foreground": "#839496",
+   "green": "#639A07",
+   "name": "Solarized Dark",
+   "purple": "#6C71C4",
+   "red": "#CB4B16",
+   "selectionBackground": "#95FF99",
+   "white": "#EEE8D5",
+   "yellow": "#B58900"
+}
