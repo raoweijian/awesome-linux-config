@@ -8,17 +8,11 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'nvie/vim-flake8'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'tpope/vim-sensible'
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 Plug 'dyng/ctrlsf.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -38,7 +32,6 @@ set guicursor=i:block
 set guifont=Consolas_NF:h16
 set termencoding=utf-8
 set mouse=n
-"set so=0
 set number
 set ruler
 set nobackup
@@ -80,42 +73,15 @@ nnoremap <localleader>s :Git blame<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 0
-"let g:airline_section_a = ''
 let g:airline_highlighting_cache=1
 let g:airline_section_b = ''
-" let g:airline_section_y = ''
 let g:airline_section_z = ''
 
-" -------------------------------------------------------------------------- vim-clap
-"  https://github.com/liuchengxu/vim-clap
-let g:clap_layout = { 'relative': 'editor' }
-nnoremap <silent> <leader>m :History<CR>
-" nnoremap <C-p> :Clap files<CR>
-" nnoremap <leader>g :Clap grep<CR>
-" nnoremap <silent> <leader>m :Clap history<CR>
-" let g:clap_theme = 'material_design_dark'
-
-" -------------------------------------------------------------------------- LeaderF
-" nmap <C-p> :Leaderf file --case-insensitive<cr>
-" nmap <C-s> :Leaderf mru <cr>
-let g:Lf_PreviewInPopup = 1
 
 " -------------------------------------------------------------------------- fzf
 "  https://github.com/junegunn/fzf.vim
-function! Fzf_files_with_dev_icons(command)
-    let l:fzf_files_options = '-i --preview "bat --color always --style numbers {2..} | head -'.&lines.'"'
-    function! s:edit_devicon_prepended_file(item)
-        let l:file_path = a:item[4:-1]
-        execute 'silent e' l:file_path
-    endfunction
-    call fzf#run({
-                \ 'source': a:command.' | devicon-lookup',
-                \ 'sink':   function('s:edit_devicon_prepended_file'),
-                \ 'options': '-m ' . l:fzf_files_options,
-                \ 'down':    '40%' })
-endfunction
 nmap <C-p> :FZF -i<CR>
-" nnoremap <C-p> :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND)<CR>
+
 
 " -------------------------------------------------------------------------- ctrlsf
 "  https://github.com/dyng/ctrlsf.vim
@@ -125,15 +91,17 @@ let g:ctrlsf_auto_close = {
             \ "compact": 0
             \}
 
+
 " -------------------------------------------------------------------------- NERDTREE
 nmap <Leader>n <plug>NERDTreeTabsToggle<CR>
 nmap <Leader>f :NERDTreeFind<CR>
 let NERDTreeAutoCenter = 1
 let NERDTreeIgnore = ['\.pyc','\~$','\.swp', '__pycache__', 'node_modules', '\.git']
-let NERDTreeWinSize = 35 "设置宽度
+let NERDTreeWinSize = 35
 
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
+
 
 " -------------------------------------------------------------------------- coc
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -154,20 +122,4 @@ function! s:show_documentation()
     endif
 endfunction
 
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
-
-" -------------------------------------------------------------------------- LanguageClient
-" let g:LanguageClient_serverCommands = {
-"     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-"     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-"     \ 'python': ['/usr/local/bin/pyls'],
-"     \ 'ruby': ['/Users/weijianrao/.rvm/gems/ruby-2.7.3/bin/solargraph', 'stdio'],
-"     \ }
-"
-" " note that if you are using Plug mapping you should not use `noremap` mappings.
-" nmap <F5> <Plug>(lcn-menu)
-" " Or map each action separately
-" nmap <silent>K <Plug>(lcn-hover)
-" nmap <silent> gd <Plug>(lcn-definition)
-" nmap <silent> <F2> <Plug>(lcn-rename)

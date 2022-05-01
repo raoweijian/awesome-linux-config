@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/weijianrao/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export ZSH_DISABLE_COMPFIX=true
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -95,39 +95,27 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-alias vim='/usr/local/bin/vim'
+alias vim='nvim'
 alias m='ls -l -h'
 alias le='less -S -N'
 alias wl='wc -l'
 alias grep='grep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv,node_modules}'
 alias dh='du -h -d 1'
 alias wget='wget --no-check-certificate'
-alias dbc='fx rdev exec core rails console'
-alias dbb='fx rdev exec core byebug'
-alias core='fx rdev exec core'
-alias shipper='fx rdev exec shipper-exp'
-alias d='dict'
-alias gs='git status -uno'
+alias gs='git status'
 alias gsa='git status'
 alias ga='git add'
 alias gc='git checkout'
 alias gd='git diff'
-alias mpr='./mpr --ct=shipper_exp'
+alias rc='bundle exec rails console'
 
 export EDITOR=vim
-export GITHUB_USERNAME='Weijian Rao'
-export PATH="/usr/local/sbin:/Users/weijianrao/bin:$PATH"
-export DEVBOX_SKIP_SYNC_CHECK=true
 
-# nvm
+# fzf
+export FZF_DEFAULT_COMMAND="fdfind --ignore-file=$HOME/.fdignore --type f --color=never"
+
+eval "$(rbenv init -)"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# fzf
-export FZF_DEFAULT_COMMAND='fd --ignore-file=/Users/weijianrao/.fdignore --type f --color=never'
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-source /Users/weijianrao/.bazel/bin/bazel-complete.bash
