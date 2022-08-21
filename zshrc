@@ -107,12 +107,13 @@ alias gsa='git status'
 alias ga='git add'
 alias gc='git checkout'
 alias gd='git diff'
-alias rc='bundle exec rails console'
+alias rc='rails console'
+alias k='kubectl'
 
 export EDITOR=vim
 
 # fzf
-export FZF_DEFAULT_COMMAND="fdfind --ignore-file=$HOME/.fdignore --type f --color=never"
+export FZF_DEFAULT_COMMAND="fdfind --ignore-file=$HOME/.fdignore --type f -H --color=never"
 
 eval "$(rbenv init -)"
 
