@@ -30,7 +30,7 @@ set number
 set ruler
 set nobackup
 set background=dark
-colorscheme solarized8
+" colorscheme solarized8
 let maplocalleader=" "
 let mapleader=" "
 
