@@ -1,7 +1,7 @@
 set -e
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install fd libpq
+brew install fd libpq the_silver_searcher rbenv ruby-build
 
 # nvm
 rm -rf $HOME/.nvm
@@ -30,7 +30,6 @@ curl -fLo $HOME/.config/nvim/coc-settings.json https://raw.githubusercontent.com
 
 # rbenv
 rm -rf $HOME/.rbenv
-brew install rbenv ruby-build
 eval "$(rbenv init - zsh)"
 rbenv install 2.7.7
 
