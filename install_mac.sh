@@ -1,7 +1,7 @@
 set -e
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install fd libpq the_silver_searcher rbenv ruby-build
+brew install fd jq libpq the_silver_searcher rbenv ruby-build
 
 # nvm
 rm -rf $HOME/.nvm
