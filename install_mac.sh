@@ -1,16 +1,16 @@
 set -e
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install fd
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew install fd libpq
 
 # nvm
 rm -rf $HOME/.nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 nvm install 16.20.0
+corepack enable
 
 # 配置 neovim
 rm -rf $HOME/.config/nvim
@@ -27,14 +27,17 @@ yarn add coc-eslint coc-json coc-flow
 cd -
 curl -fLo $HOME/.config/nvim/coc-settings.json https://raw.githubusercontent.com/raoweijian/awesome-linux-config/master/coc-settings.json
 
+
 # rbenv
-rm -rf $HOME/.rvm
-gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -sSL https://get.rvm.io | bash -s stable --auto-dotfiles
+rm -rf $HOME/.rbenv
+brew install rbenv ruby-build
+eval "$(rbenv init - zsh)"
+rbenv install 2.7.7
 
 # 配置 zsh
 rm -rf $HOME/.oh-my-zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# cp zshrc_mac $HOME/.zshrc
 curl https://raw.githubusercontent.com/raoweijian/awesome-linux-config/master/zshrc_mac --output $HOME/.zshrc
 
 curl -fLo $HOME/.fdignore https://raw.githubusercontent.com/raoweijian/awesome-linux-config/master/fdignore
