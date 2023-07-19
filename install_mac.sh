@@ -1,7 +1,7 @@
 set -e
 
-# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# brew install fd libpq
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install fd libpq
 
 # nvm
 rm -rf $HOME/.nvm
