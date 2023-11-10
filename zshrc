@@ -20,6 +20,7 @@ alias gc='git checkout'
 alias gd='git diff'
 alias rc='rails console'
 alias k='kubectl'
+alias vimrc='nvim ~/.config/nvim/init.vim'
 
 export EDITOR=vim
 
