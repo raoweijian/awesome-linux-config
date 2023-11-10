@@ -14,6 +14,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -62,6 +63,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap cp :let @+ = expand("%")<CR>
 nnoremap vs :vsplit<CR>
 nnoremap <localleader>s :Git blame<CR>
+nnoremap <localleader>m :History<CR>
 
 " -------------------------------------------------------------------------- airline
 "  https://github.com/vim-airline/vim-airline
@@ -118,3 +120,4 @@ function! s:show_documentation()
 endfunction
 
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
