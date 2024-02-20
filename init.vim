@@ -31,6 +31,7 @@ set number
 set ruler
 set nobackup
 set background=dark
+set foldignore=
 
 silent! colorscheme solarized8
 let maplocalleader=" "

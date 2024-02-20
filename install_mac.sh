@@ -16,12 +16,9 @@ corepack enable
 rm -rf $HOME/.config/nvim
 rm -rf $HOME/.config/coc
 mkdir -p $HOME/.config/nvim
-curl https://raw.githubusercontent.com/raoweijian/awesome-linux-config/master/init.lua --output $HOME/.config/nvim/init.lua
-# curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim --headless +qall
-
-cd $HOME/.local/share/nvim/lazy/coc.nvim
-yarn install
+curl https://raw.githubusercontent.com/raoweijian/awesome-linux-config/master/init.vim --output $HOME/.config/nvim/init.vim
+curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim --headless +PlugInstall +qall
 
 # coc
 mkdir -p $HOME/.config/coc/extensions
