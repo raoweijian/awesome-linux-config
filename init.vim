@@ -30,9 +30,10 @@ set mouse=n
 set number
 set ruler
 set nobackup
-set background=dark
-set foldignore=
 
+"set notermguicolors
+set background=dark
+"let g:solarized8_termtrans = 0
 silent! colorscheme solarized8
 let maplocalleader=" "
 let mapleader=" "
@@ -44,6 +45,7 @@ set tabstop=2
 set softtabstop=2
 set foldlevelstart=99
 set fdm=indent
+set foldignore=
 set cindent
 highlight Folded ctermfg=6 ctermbg=8
 highlight WhitespaceEOL ctermbg=red guibg=red
